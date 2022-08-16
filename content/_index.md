@@ -11,6 +11,7 @@ outputs = ["Reveal"]
 
 [reveal_hugo.custom_theme_options]
   targetPath = "css/custom-theme.css"
+  enableSourceMap = true
 +++
 
 # MDM 🧀
@@ -23,6 +24,7 @@ Mambelli Domain Model
 
 ```scala
 final case class Class(i: Int)
+type a = String => Int
 enum Enum:
   case Case(s: String)
 ```
