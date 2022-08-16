@@ -1,0 +1,22 @@
+@import "reveal-js/css/theme/template/mixins";
+@import "reveal-js/css/theme/template/settings";
+
+// Include theme-specific fonts
+$backgroundColor: #fff5e6;
+//$mainColor: #000;
+//$headingColor: #111;
+//$mainFontSize: 2em;
+//$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+//$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+//$headingLetterSpacing: normal;
+//$headingFontWeight: 600;
+//$linkColor: #0000b0;
+//$linkColorHover: lighten($linkColor, 25%);
+//$selectionBackgroundColor: lighten($linkColor, 25%);
+//
+//$heading1Size: 2.5em;
+//$heading2Size: 1.6em;
+//$heading3Size: 1.3em;
+//$heading4Size: 1.0em;
+
+@import "reveal-js/css/theme/template/theme";

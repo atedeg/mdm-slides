@@ -5,6 +5,11 @@ theme = 'reveal-hugo'
 
 [params.reveal_hugo]
 theme = "white"
+highlight_theme = "solarized-light"
+
+[markup.highlight]
+codeFences = false
+# style = "lightblue"
 
 [markup.goldmark.renderer]
 unsafe = true
@@ -13,8 +18,3 @@ unsafe = true
 baseName = "index"
 mediaType = "text/html"
 isHTML = true
-
-[markup.highlight]
-#style = "monokailight"
-#style = "pastie"
-style = "pygments"
