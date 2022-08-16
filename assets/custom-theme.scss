@@ -30,6 +30,19 @@ $heading4Size: 1.0em;
     line-height: 130%;
 }
 
+.avatar-container {
+    padding-top: 0.2em;
+}
+
+.avatar {
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 section.has-light-background {
 
     &,

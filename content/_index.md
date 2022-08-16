@@ -16,7 +16,14 @@ outputs = ["Reveal"]
 
 # MDM 🧀
 
-Mambelli Domain Model
+_Mambelli Domain Model_
+
+<p class="avatar-container">
+  <img class="avatar" src="https://avatars.githubusercontent.com/u/20598369?v=4" alt="giacomo-avatar">
+  <img class="avatar" src="https://avatars.githubusercontent.com/u/4855008?v=4" alt="nicolo-avatar">
+  <img class="avatar" src="https://avatars.githubusercontent.com/u/11615611?v=4" alt="nicolas-avatar">
+  <img class="avatar" src="https://avatars.githubusercontent.com/u/62563336?v=4" alt="linda-avatar">
+</p>
 
 ---
 
