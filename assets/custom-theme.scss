@@ -1,22 +1,47 @@
 @import "reveal-js/css/theme/template/mixins";
 @import "reveal-js/css/theme/template/settings";
 
-// Include theme-specific fonts
-$backgroundColor: #fff5e6;
-//$mainColor: #000;
-//$headingColor: #111;
-//$mainFontSize: 2em;
-//$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
-//$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
-//$headingLetterSpacing: normal;
-//$headingFontWeight: 600;
-//$linkColor: #0000b0;
-//$linkColorHover: lighten($linkColor, 25%);
-//$selectionBackgroundColor: lighten($linkColor, 25%);
-//
-//$heading1Size: 2.5em;
-//$heading2Size: 1.6em;
-//$heading3Size: 1.3em;
-//$heading4Size: 1.0em;
+$backgroundColor: #fdf7e9;
+
+$mainColor: #55303e;
+$headingColor: #55303e;
+
+$mainFontSize: 38px;
+$mainFont: 'Fira Code', Helvetica, sans-serif;
+$headingFont: 'Fira Code', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: #ff3c3e;
+$linkColorHover: #f9b59c; //lighten($linkColor, 15%);
+$selectionBackgroundColor: #f9b59c; //lighten($linkColor, 25%);
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
 
 @import "reveal-js/css/theme/template/theme";
+
+.reveal code {
+    font-family: "Fira Code";
+    line-height: 130%;
+}
+
+section.has-light-background {
+
+    &,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #222;
+    }
+}
+
+.reveal pre {
+    margin: 50px auto;
+}
