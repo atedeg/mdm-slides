@@ -49,7 +49,7 @@ jobs:
         run: |
           npm install -g decktape
           (hugo server) &
-          decktape http://localhost:1313/mdm-slides mdm-slides.pdf
+          decktape --load-pause 300 -p 20 http://localhost:1313/mdm-slides mdm-slides.pdf
           kill -KILL $(pidof hugo)
 
       - name: Release
