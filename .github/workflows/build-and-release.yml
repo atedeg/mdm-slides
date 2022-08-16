@@ -40,13 +40,16 @@ jobs:
           FOLDER: public
 
       - name: Update package list
-        run: sudo apt-get update -y
+        run: |
+          sudo add-apt-repository -y universe
+          sudo apt-get update -y
 
       - name: Install Chromium
         run: sudo apt-get install -y chromium-browser
 
       - name: Generate PDF
         run: |
+          sudo apt install -y fonts-firacode
           npm install -g decktape
           (hugo server) &
           decktape http://localhost:1313/mdm-slides mdm-slides.pdf
