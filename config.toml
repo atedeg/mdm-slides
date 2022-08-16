@@ -1,3 +1,20 @@
 baseURL = 'https://atedeg.dev/mdm-slides/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'MDM - Mambelli Domain Model'
+theme = 'reveal-hugo'
+
+[params.reveal_hugo]
+theme = "white"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
+
+[markup.highlight]
+#style = "monokailight"
+#style = "pastie"
+style = "pygments"
