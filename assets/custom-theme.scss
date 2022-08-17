@@ -31,17 +31,33 @@ $heading4Size: 1.0em;
     line-height: 130%;
 }
 
+.mdm-logo {
+    margin: 0em !important;
+    height: 7em;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
 .avatar-container {
     padding-top: 0.2em;
 }
 
 .avatar {
-    height: 3em;
-    width: 3em;
+    height: 1.6em;
+    width: 1.6em;
     border-radius: 50%;
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.mdm-title {
+    font-size: 1.3em;
+    font-family: 'Fira Code';
+    font-weight: 600;
 }
 
 section.has-light-background {
