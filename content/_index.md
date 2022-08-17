@@ -14,9 +14,9 @@ outputs = ["Reveal"]
   enableSourceMap = true
 +++
 
-# MDM 🧀
+<img class="mdm-logo" src="img/logo.svg" alt="MDM"/>
 
-_Mambelli Domain Model_
+<p class="mdm-title">Mambelli Domain Model</p>
 
 <p class="avatar-container">
   <img class="avatar" src="https://avatars.githubusercontent.com/u/20598369?v=4" alt="giacomo-avatar">
@@ -28,6 +28,8 @@ _Mambelli Domain Model_
 ---
 
 # Test
+
+Whereas recognition of the inherent dignity
 
 ```scala
 final case class Class(i: Int)
