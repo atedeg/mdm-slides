@@ -62,9 +62,13 @@ We chose this domain because:
 
 ## Bounded Contexts
 
+TODO: add context map
+
 ---
 
 ## User Stories
+
+TODO: add user stories
 
 {{% /section %}}
 
@@ -78,6 +82,8 @@ We chose this domain because:
 
 ## Clean Architecture
 
+<img class="stretch no-border" src="img/clean-architecture.svg" alt="clean architecture">
+
 {{% /section %}}
 
 ---
@@ -88,6 +94,36 @@ We chose this domain because:
 ---
 
 ## DVCS Workflow
+
+We adopt a `git-flow`-like workflow with a `beta` branch for pre-releases and a `main` branch for the stable ones.
+
+{{< mermaid >}}
+%%{init: {'theme':'base'}}%%
+gitGraph
+  commit id: "chore: ..."
+  commit id: "build: ..."
+  commit id: "chore: ..."
+  commit id: "ci: ..."
+  branch beta
+  commit tag: "1.0.0-beta.1"
+  branch feat/feature-1
+  checkout feat/feature-1
+  commit id: "feat: feature 1"
+  commit id: "feat: feature 2"
+  checkout beta
+  merge feat/feature-1 tag: "1.0.0-beta.2"
+  branch feat/feature-2
+  commit id: "feat: feature 3"
+  checkout beta
+  merge feat/feature-2 tag: "1.0.0-beta.3"
+  checkout main
+  merge beta tag: "1.0.0"
+  branch fix/fix-2
+  commit id: "fix: fix1"
+  commit id: "fix: fix2"
+  checkout main
+  merge fix/fix-2 tag: "1.0.1"
+{{< /mermaid >}}
 
 ---
 
