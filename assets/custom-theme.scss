@@ -1,6 +1,7 @@
 @import "reveal-js/css/theme/template/mixins";
 @import "reveal-js/css/theme/template/settings";
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 $backgroundColor: #fdf7e9;
 
@@ -8,8 +9,8 @@ $mainColor: #55303e;
 $headingColor: #55303e;
 
 $mainFontSize: 38px;
-$mainFont: 'Fira Code', Helvetica, sans-serif;
-$headingFont: 'Fira Code', Helvetica, sans-serif;
+$mainFont: 'Inter', Helvetica, sans-serif;
+$headingFont: 'Inter', Helvetica, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: uppercase;
