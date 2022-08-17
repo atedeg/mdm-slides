@@ -31,7 +31,7 @@ outputs = ["Reveal"]
 
 Whereas recognition of the inherent dignity
 
-```scala
+```scala{}
 final case class Class(i: Int)
 type a = String => Int
 enum Enum:
