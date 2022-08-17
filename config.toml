@@ -6,6 +6,8 @@ theme = 'reveal-hugo'
 [params.reveal_hugo]
 theme = "white"
 highlight_theme = "solarized-light"
+width = "1440"
+height = "900"
 
 [markup.highlight]
 codeFences = false

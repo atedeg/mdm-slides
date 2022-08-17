@@ -8,7 +8,7 @@ $backgroundColor: #fdf7e9;
 $mainColor: #55303e;
 $headingColor: #55303e;
 
-$mainFontSize: 38px;
+$mainFontSize: 2em;
 $mainFont: 'Inter', Helvetica, sans-serif;
 $headingFont: 'Inter', Helvetica, sans-serif;
 $headingTextShadow: none;
@@ -26,6 +26,12 @@ $heading4Size: 1.0em;
 
 @import "reveal-js/css/theme/template/theme";
 
+.no-border {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
 .reveal code {
     font-family: "Fira Code", monospace;
     line-height: 130%;
@@ -33,7 +39,7 @@ $heading4Size: 1.0em;
 
 .mdm-logo {
     margin: 0em !important;
-    height: 7em;
+    height: 9em;
     border: none !important;
     background: none !important;
     box-shadow: none !important;
