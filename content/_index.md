@@ -158,6 +158,14 @@ The use of __Conventional Commits__ combined with __Semantic Release__ helped us
 
 ## Quality Assurance
 
+Code quality is an important aspect, so the following tools have been used:
+
+- [Wartremover](https://www.wartremover.org/)
+- [Scalafix](https://scalacenter.github.io/scalafix/)
+- [Scalafmt](https://scalameta.org/scalafmt/)
+
+Each of these tools is used in CI to prevent the merge of bad code.
+
 ---
 
 ## Continuous Integration and Deployment
