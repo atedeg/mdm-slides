@@ -129,6 +129,19 @@ gitGraph
 
 ## Conventional Commit
 
+Why use `conventional commit`?
+
+- Automatically determining a semantic version bump
+- Triggering build and publish processes (with external tools)
+- Automatically generating CHANGELOGs
+- More understandable commit history
+
+How to enforce the use of `conventional commit`?
+
+A [_gradle plugin_](https://github.com/nicolasfara/conventional-commits)
+and an [_sbt plugin_](https://github.com/nicolasfara/sbt-conventional-commits)
+have been developed.
+
 ---
 
 ## Semantic Release
