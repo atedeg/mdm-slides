@@ -131,7 +131,7 @@ gitGraph
 
 ---
 
-## Semantic Versioning
+## Semantic Release
 
 ---
 
