@@ -146,13 +146,37 @@ have been developed.
 
 ## Semantic Release
 
+`semantic-release` automates the whole package release workflow:
+
+- Determines the next version number
+- Generates the release notes
+- Publish the package
+
+The use of __Conventional Commits__ combined with __Semantic Release__ helped us to automate the release process.
+
 ---
 
 ## Quality Assurance
 
 ---
 
-## CI/CD
+## Continuous Integration and Deployment
+
+The following workflow is the result of a pipeline optimization that seeks to take full advantage of the parallelism between jobs:
+
+{{< mermaid >}}
+%%{init: {'theme':'base'}}%%
+flowchart LR
+  SFMT(Scalafmt) --> B
+  SFX(Scalafix) --> B
+  WRM(Wartremover) --> B
+  T(Unit test) --> Cov(Coverage Report)
+  Cov --> B
+  A(Documentation site)-->B(Publish)
+  B --> C(Publish site)
+{{< /mermaid >}}
+
+To simplify the `Publish` job, the [`scala-release`](https://github.com/atedeg/scala-release) action was developed.
 
 {{% /section %}}
 
