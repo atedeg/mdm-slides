@@ -35,7 +35,7 @@ a small family business that produces and sells cheese.
 We chose this domain because:
 
 - It is quite complex
-- There are domain expert that could help us
+- There are domain experts that could help us
 - We ❤️ cheese
 
 ---
@@ -56,7 +56,7 @@ We chose this domain because:
 
 ## Core Domain Chart
 
-<img class="stretch no-border" src="img/core-domain-chart.png" alt="core domain chart">
+<img class="stretch no-border" src="img/core-domain-chart.svg" alt="core domain chart">
 
 ---
 
@@ -87,6 +87,7 @@ TODO: add user stories
 {{% /section %}}
 
 ---
+
 {{% section %}}
 
 # DevOps
@@ -190,17 +191,98 @@ To simplify the `Publish` job, the [`scala-release`](https://github.com/atedeg/s
 
 ---
 
-{{% section %}}
+{{% section%}}
 
-# Development
+# Development Choices
 
 ---
 
 ## Domain Modeling Approach
 
+All core domain concepts are modelled using simple ADTs to keep
+them as simple and adherent to the expert's definition as possible:
+
+```scala{}
+enum Batch:
+  case Aging(id: BatchID, cheeseType: CheeseType, readyFrom: LocalDateTime)
+  case ReadyForQualityAssurance(id: BatchID, cheeseType: CheeseType)
+```
+
+instead of the possibly confusing:
+
+```scala{}
+final case class Batch(
+  id: BatchID,
+  cheeseType: CheeseType,
+  isAging: Bool,
+  readyFrom: Option[LocalDateTime], // only defined if isAging 
+)
+```
+
+{{% note %}}
+
+- La prima esprime chiaramente i possibili stati in cui si può trovare un lotto
+- Non ci possono essere stati incoerenti
+- La definizione è più semplice e lineare da leggere anche per un esperto di dominio
+
+{{% /note %}}
+
+---
+
+All primitive types are not only wrapped in appropriate value objects but also enriched
+with compile-time-checked predicates:
+
+```scala{}
+type PositiveNumber = Int Refined Positive
+final case class InStockQuantity(n: PositiveNumber)
+```
+
+instead of:
+
+```scala{}
+final case class InStockQuantity private(n: Int)
+object InStockQuantity:
+  def apply(n: Int): Option[InStockQuantity] =
+    if n < 0 then None else Some(InStockQuantity(n))
+```
+
+{{% note %}}
+
+- Modellazione più chiara, facile da leggere anche per un esperto di dominio
+- Esprime chiaramente delle invarianti importanti a livello di type signature
+- Non c'è bisogno di andare a leggere il codice del costruttore
+- Meno test da scrivere perché non c'è un costruttore la cui implementazione potrebbe
+  erroneamente cambiare nel tempo
+- Più errori catturati  compile-time
+
+{{% /note %}}
+
 ---
 
 ## Side-effect Encoding via Monads
+
+All core domain actions use a monadic encoding of side-effects: all side effects are reified
+(using an [`mtl`](https://typelevel.org/cats-mtl/getting-started.html)-style encoding)
+and expressed in the type signature of the function.
+
+```scala{|1|1,5|1,7|}
+def labelProduct[M[_]: CanRaise[WeightNotInRange]: CanEmit[ProductStocked]: Monad]
+  (...): M[LabelledProduct] =
+for
+  ...
+  product <- optionalProduct.ifMissingRaise(WeightNotInRange(...): WeightNotInRange)
+  labelledProduct = LabelledProduct(product, AvailableQuantity(1), batch.id)
+  _ <- emit(ProductStocked(labelledProduct): ProductStocked)
+yield labelledProduct
+```
+
+{{% note %}}
+
+- Modellazione più chiara, isola ed esprime chiaramente i side effect
+- DSL monadico per scrivere codice che sia più facilmente comprensibile
+- Reificando i side effect diventa molto semplice testare le diverse azioni isolandole fra loro
+
+{{% /note %}}
 
 ---
 
