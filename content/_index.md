@@ -47,11 +47,20 @@ We chose this domain because:
 
 <img class="stretch" src="img/event-storming-session.gif" alt="event storming session">
 
+{{% note %}}
+Descrivi qui i sottodomini e cosa fanno
+{{% /note %}}
+
 ---
 
 ## Event Storming
 
 <img class="stretch no-border" src="img/event-storming.svg" alt="event storming diagram">
+
+{{% note %}}
+La stima del latte (milk planning) viene al momento fatta a mano basandosi su dati storici e intuito;
+è big bet perché porterebbe grandi vantaggi con una predizione accurata del latte da ordinare
+{{% /note %}}
 
 ---
 
