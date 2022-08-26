@@ -288,6 +288,8 @@ yield labelledProduct
 
 ## DTOs
 
+Accennare senza dilungarsi troppo!
+
 ---
 
 ## HTTP API
@@ -296,8 +298,18 @@ yield labelledProduct
 
 ## Documentation
 
+All ubiquitous language concepts are mirrored by a corresponding ADT in the code.
+Keeping the code and the ubiquitous language up-to-date can be a difficult task.
+
 {{% /section %}}
 
 ---
 
 # License
+
+The open licence that best suited our needs was the
+[Apache Licence 2.0](https://www.apache.org/licenses/LICENSE-2.0):  
+our codebase could contain refences to the Mambelli trademark
+and this licence does not grant permission to it  
+_"...except as required for reasonable and customary use_  
+_in describing the origin of the Work..."_
