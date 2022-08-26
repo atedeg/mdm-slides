@@ -148,13 +148,13 @@ gitGraph
 
 ## Conventional Commit
 
-To enforce conventional `conventional commit` we developed
+To enforce `conventional commit` we developed
 a [_gradle plugin_](https://github.com/nicolasfara/conventional-commits) and an
 [_sbt plugin_](https://github.com/nicolasfara/sbt-conventional-commits).
 The plugin is handy since:
 
 - It creates a git hook as soon as the project is imported  
-  (one can not forget to set it up!)
+  (one cannot forget to set it up!)
 - It can also be configured through ad-hoc plug-in keys
 
 {{% note %}}
@@ -346,7 +346,22 @@ It proved to be useful in many ways:
 
 - The endpoints are defined declaratively
 - All the endpoints definitions are type-checked
-- It automatically generates the OpenAPI specification and serves it through Swagger
+- It automatically generates the OpenAPI specification and displays it through Swagger
+
+```scala
+// GET order/{order-id}/ddt
+val getTransportDocumentEndpoint: PublicEndpoint[String, String, TransportDocumentDTO, Any] =
+  endpoint.get
+    .in("order")
+    .in(
+      path[String]
+        .description("The ID of the order for which the transport document is requested")
+        .name("order-id"),
+    )
+    .in("ddt")
+    .out(jsonBody[TransportDocumentDTO].description("The transport document for the given order"))
+    .errorOut(stringBody)
+```
 
 {{% note %}}
 
