@@ -98,7 +98,7 @@ The architecture of each bounded context follows the Clean Architecture's struct
 
 ## DVCS Workflow
 
-We adopt a `git-flow`-like workflow with a `beta` branch for pre-releases and a `main` branch for the stable ones
+We adopted a `git-flow`-like workflow with a `beta` branch for pre-releases and a `main` branch for the stable ones
 
 {{< mermaid >}}
 %%{
