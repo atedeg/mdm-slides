@@ -82,3 +82,11 @@ section.has-light-background {
 .reveal pre {
     margin: 50px auto;
 }
+
+.reveal .slide-number {
+    background-color: transparent;
+}
+
+.reveal .slide-number > a {
+    color: #ff3c3e;
+}
