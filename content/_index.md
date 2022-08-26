@@ -60,15 +60,9 @@ We chose this domain because:
 
 ---
 
-## Bounded Contexts
+## Context Map
 
 TODO: add context map
-
----
-
-## User Stories
-
-TODO: add user stories
 
 {{% /section %}}
 
@@ -77,10 +71,6 @@ TODO: add user stories
 {{% section %}}
 
 # Architecture
-
----
-
-## Clean Architecture
 
 <img class="stretch no-border" src="img/clean-architecture.svg" alt="clean architecture">
 
@@ -99,7 +89,23 @@ TODO: add user stories
 We adopt a `git-flow`-like workflow with a `beta` branch for pre-releases and a `main` branch for the stable ones.
 
 {{< mermaid >}}
-%%{init: {'theme':'base'}}%%
+%%{
+  init: {
+    'theme':'base',
+    'themeVariables': {
+      'git0': '#ff3c3e',
+      'git1': '#f9b59c',
+      'git2': '#8de0d8',
+      'git3': '#fca55f',
+      'git4': '#55303e',
+      'gitBranchLabel0': '#000000',
+      'gitBranchLabel1': '#000000',
+      'gitBranchLabel2': '#000000',
+      'gitBranchLabel3': '#000000',
+      'gitBranchLabel4': '#ffffff'
+    }
+}
+}%%
 gitGraph
   commit id: "chore: ..."
   commit id: "build: ..."
