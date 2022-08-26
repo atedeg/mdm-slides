@@ -1,2 +1,2 @@
 # mdm-slides
-Slides for the MDM projects
+[Slides](https://atedeg.dev/mdm-slides/#/) for the MDM projects
