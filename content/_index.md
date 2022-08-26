@@ -62,7 +62,7 @@ We chose this domain because:
 
 ## Context Map
 
-TODO: add context map
+<img class="stretch no-border" src="img/context-map-light.svg" alt="context map">
 
 {{% /section %}}
 
@@ -71,6 +71,8 @@ TODO: add context map
 {{% section %}}
 
 # Architecture
+
+The architecture of each bounded context follows the Clean Architecture's structure
 
 <img class="stretch no-border" src="img/clean-architecture.svg" alt="clean architecture">
 
@@ -86,7 +88,7 @@ TODO: add context map
 
 ## DVCS Workflow
 
-We adopt a `git-flow`-like workflow with a `beta` branch for pre-releases and a `main` branch for the stable ones.
+We adopt a `git-flow`-like workflow with a `beta` branch for pre-releases and a `main` branch for the stable ones
 
 {{< mermaid >}}
 %%{
@@ -136,30 +138,41 @@ gitGraph
 
 ## Conventional Commit
 
-Why use `conventional commit`?
+To enforce conventional `conventional commit` we developed
+a [_gradle plugin_](https://github.com/nicolasfara/conventional-commits) and an
+[_sbt plugin_](https://github.com/nicolasfara/sbt-conventional-commits).
+The plugin is handy since:
 
-- Automatically determining a semantic version bump
-- Triggering build and publish processes (with external tools)
-- Automatically generating CHANGELOGs
-- More understandable commit history
+- It creates a git hook as soon as the project is imported  
+  (one can not forget to set it up!)
+- It can also be configured through ad-hoc plug-in keys
 
-How to enforce the use of `conventional commit`?
+{{% note %}}
 
-A [_gradle plugin_](https://github.com/nicolasfara/conventional-commits)
-and an [_sbt plugin_](https://github.com/nicolasfara/sbt-conventional-commits)
-have been developed.
+Perché usare `conventional commit`?
+
+- Determinare automaticamente il version bump
+- Avviare build e publishing del progetto in automatico
+- Generare automaticamenet CHANGELOGs
+- Storia dei commit più facile da capire
+
+- Husky e commitlint non ci piacevano perché uno se ne può dimenticare
+  dato che richiedono intervento manuale
+
+{{% /note %}}
 
 ---
 
 ## Semantic Release
 
-`semantic-release` automates the whole package release workflow:
+[`semantic-release`](https://semantic-release.gitbook.io/semantic-release/)
+automates the whole package release workflow:
 
 - Determines the next version number
 - Generates the release notes
-- Publish the package
+- Publishes the package
 
-The use of __Conventional Commits__ combined with __Semantic Release__ helped us to automate the release process.
+The use of __Conventional Commits__ combined with __Semantic Release__ helped us to automate the release process
 
 ---
 
@@ -171,7 +184,7 @@ Code quality is an important aspect, so the following tools have been used:
 - [Scalafix](https://scalacenter.github.io/scalafix/)
 - [Scalafmt](https://scalameta.org/scalafmt/)
 
-Each of these tools is used in CI to prevent the merge of bad code.
+Each of these tools is used in CI to prevent the merging of bad code
 
 ---
 
@@ -191,7 +204,15 @@ flowchart LR
   B --> C(Publish site)
 {{< /mermaid >}}
 
-To simplify the `Publish` job, the [`scala-release`](https://github.com/atedeg/scala-release) action was developed.
+To simplify the `Publish` job, the [`scala-release`](https://github.com/atedeg/scala-release) action was developed
+
+---
+
+## Project Management
+
+- We first defined a product backlog and biweekly sprint backlogs
+- All backlog items are tracked by linked GitHub issues
+- Closing PRs and issues automatically advances the project status
 
 {{% /section %}}
 
@@ -269,7 +290,7 @@ object InStockQuantity:
 
 All core domain actions use a monadic encoding of side-effects: all side effects are reified
 (using an [`mtl`](https://typelevel.org/cats-mtl/getting-started.html)-style encoding)
-and expressed in the type signature of the function.
+and expressed in the type signature of the function
 
 ```scala{|1|1,5|1,7|}
 def labelProduct[M[_]: CanRaise[WeightNotInRange]: CanEmit[ProductStocked]: Monad]
@@ -294,18 +315,70 @@ yield labelledProduct
 
 ## DTOs
 
-Accennare senza dilungarsi troppo!
+DTOs play a fundamental role in transferring data to and from a bounded context.
+All the repetitive code needed to generate a `DTO` instance is automatically generated
+taking advantage of Scala 3's metaprogramming and inlining
+
+```scala{}
+final case class Client(code: ClientCode, name: String, vatNumber: VATNumber)
+final case class ClientDTO(code: String, name: String, vatNumber: String)
+
+// Automatic derivation with compile-time checks!
+given DTO[Client, ClientDTO] = productTypeDTO
+```
 
 ---
 
 ## HTTP API
 
+We used the [tapir](https://tapir.softwaremill.com/en/latest/) library to define the endpoints.
+It proved to be useful in many ways:
+
+- The endpoints are defined declaratively
+- All the endpoints definitions are type-checked
+- It automatically generates the OpenAPI specification and serves it through Swagger
+
+{{% note %}}
+
+Demo con il serverino swagger
+
+{{% /note %}}
+
 ---
 
 ## Documentation
 
-All ubiquitous language concepts are mirrored by a corresponding ADT in the code.
-Keeping the code and the ubiquitous language up-to-date can be a difficult task.
+- All ubiquitous language concepts are mirrored by a corresponding ADT in the code
+- Keeping the code and the ubiquitous language up-to-date can be a difficult task
+- The code should be the only source of truth (the code _is_ the ubiquitous language)
+
+We needed a way to automatically generate documentation pages containing the
+ubiquitous language definitions coming from the scaladoc
+
+---
+
+## Ubidoc
+
+A configurable plugin we developed to create markdown tables from ubiquitous language
+definitions from the scaladoc
+
+```scala
+/**
+ * It defines, for each product, the [[StockedQuantity quantity available in stock]].
+ */
+final case class Stock(...)
+/**
+ * A quantity of a stocked product, it may also be zero.
+ */
+final case class StockedQuantity(...)
+```
+
+is turned into this table:
+
+|Term | Definition |
+|-----|-------------|
+| Stock | It defines, for each product, the [quantity available in stock](https://atedeg.dev/mdm/dev/atedeg/mdm/restocking/StockedQuantity.html#). |
+| Stocked Quantity | A quantity of a stocked product, it may also be zero. |
 
 {{% /section %}}
 
@@ -316,6 +389,6 @@ Keeping the code and the ubiquitous language up-to-date can be a difficult task.
 The open licence that best suited our needs was the
 [Apache Licence 2.0](https://www.apache.org/licenses/LICENSE-2.0):  
 our codebase could contain refences to the Mambelli trademark
-and this licence does not grant permission to it  
+and this licence does not grant permission to use it  
 _"...except as required for reasonable and customary use_  
 _in describing the origin of the Work..."_
