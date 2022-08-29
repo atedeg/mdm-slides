@@ -47,10 +47,6 @@ We chose this domain because:
 
 <img class="stretch" src="img/event-storming-session.gif" alt="event storming session">
 
-{{% note %}}
-Descrivi qui i sottodomini e cosa fanno
-{{% /note %}}
-
 ---
 
 ## Event Storming
@@ -58,8 +54,7 @@ Descrivi qui i sottodomini e cosa fanno
 <img class="stretch no-border" src="img/event-storming.svg" alt="event storming diagram">
 
 {{% note %}}
-La stima del latte (milk planning) viene al momento fatta a mano basandosi su dati storici e intuito;
-è big bet perché porterebbe grandi vantaggi con una predizione accurata del latte da ordinare
+Descrivi qui i 7 sottodomini e cosa fanno
 {{% /note %}}
 
 ---
@@ -68,11 +63,22 @@ La stima del latte (milk planning) viene al momento fatta a mano basandosi su da
 
 <img class="stretch no-border" src="img/core-domain-chart.svg" alt="core domain chart">
 
+{{% note %}}
+La stima del latte (milk planning) viene al momento fatta a mano basandosi su dati storici e intuito;
+è big bet perché porterebbe grandi vantaggi con una predizione accurata del latte da ordinare
+
+3 sottodomini di supporto diventeranno generici fra qualche anno
+{{% /note %}}
+
 ---
 
 ## Context Map
 
 <img class="stretch no-border" src="img/context-map-light.svg" alt="context map">
+
+{{% note %}}
+I due sottodomini core (milk planning e production planning) hanno sempre anti-corruption layer quando sono downstream
+{{% /note %}}
 
 {{% /section %}}
 
