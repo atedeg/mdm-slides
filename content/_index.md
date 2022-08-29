@@ -78,6 +78,10 @@ La stima del latte (milk planning) viene al momento fatta a mano basandosi su da
 
 {{% note %}}
 I due sottodomini core (milk planning e production planning) hanno sempre anti-corruption layer quando sono downstream
+
+Bounded context extra: products, contiene linea di prodotti e ingredienti, shared kernel con tutti:
+un cambiamento alla linea di prodotti di Mambelli si deve riflettere su tutti gli altri bounded context,
+perché se cambia questa anche i processi aziendali devono adattarsi
 {{% /note %}}
 
 {{% /section %}}
