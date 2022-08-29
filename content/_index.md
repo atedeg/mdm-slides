@@ -96,6 +96,15 @@ The architecture of each bounded context follows the Clean Architecture's struct
 
 <img class="stretch no-border" src="img/clean-architecture.svg" alt="clean architecture">
 
+{{% note %}}
+- INVERS DELLE DIP e ISOLAM DOM
+- types: concetti dominio mappati 1a1(vedremo come) indipendenti, pochi cambiamenti
+- azioni: accedere/usare info dominio (es. creaz pp, prezzat ordine)
+- eventi: eventi di dominio esterni o interni(es. ordine ricevuto, piano prod completato)
+- terzo layer: meccanismi protez/conversi dati che entrano/escono(fatto con DTO: es. BC)-repository
+- ultimo: endpoint (come vedremo), persistenza dati mockata
+{{% /note %}}
+
 {{% /section %}}
 
 ---
@@ -375,7 +384,9 @@ val getTransportDocumentEndpoint: PublicEndpoint[String, String, TransportDocume
 
 {{% note %}}
 
-Demo con il serverino swagger
+- implementare in modo dichiarativo e type-safe endpoints
+- da questa descrizione genera specifica openAPI e la mostra tramite Swagger UI
+- demo con il serverino swagger
 
 {{% /note %}}
 
@@ -389,6 +400,12 @@ Demo con il serverino swagger
 
 We needed a way to automatically generate documentation pages containing the
 ubiquitous language definitions coming from the scaladoc
+
+{{% note %}}
+- tutti i concetti sono mappati 1:1
+- evitare inconsistenze tra codice e documentazione (copia incolla)
+- così esperto di dominio e programmatori sono allineati
+{{% /note %}}
 
 ---
 
@@ -427,3 +444,8 @@ our codebase could contain refences to the Mambelli trademark
 and this licence does not grant permission to use it  
 _"...except as required for reasonable and customary use_  
 _in describing the origin of the Work..."_
+
+{{% note %}}
+- in una situa reale progetto chiuso perché potrebbe segreti industriali
+- MARCHIO REGISTRATO
+{{% /note %}}
