@@ -97,6 +97,7 @@ The architecture of each bounded context follows the Clean Architecture's struct
 <img class="stretch no-border" src="img/clean-architecture.svg" alt="clean architecture">
 
 {{% note %}}
+
 - INVERS DELLE DIP e ISOLAM DOM
 - types: concetti dominio mappati 1a1(vedremo come) indipendenti, pochi cambiamenti
 - azioni: accedere/usare info dominio (es. creaz pp, prezzat ordine)
@@ -163,30 +164,37 @@ gitGraph
   merge fix/fix-2 tag: "1.0.1"
 {{< /mermaid >}}
 
+{{% note %}}
+
+- `beta` branch nelle prime fase di sviluppo: pre-release
+- `main` branch: release stabili
+- Branch protection: feature via PRs
+- Ogni feature o fix ha un suo branch e mergiato via PR
+- Workflow favorito da tools usati (slide successive)
+- **Assenza branch develop**
+
+{{% /note %}}
+
 ---
 
-## Conventional Commit
+## Conventional Commits
 
-To enforce `conventional commit` we developed
+To enforce `Conventional Commits` we developed
 a [_gradle plugin_](https://github.com/nicolasfara/conventional-commits) and an
 [_sbt plugin_](https://github.com/nicolasfara/sbt-conventional-commits).
 The plugin is handy since:
 
-- It creates a git hook as soon as the project is imported  
-  (one cannot forget to set it up!)
-- It can also be configured through ad-hoc plug-in keys
+- It creates a git hook as soon as the project is imported (you don't forget to set it up!)
+- It can also be configured through plug-in keys
 
 {{% note %}}
 
 Perché usare `conventional commit`?
 
-- Determinare automaticamente il version bump
-- Avviare build e publishing del progetto in automatico
-- Generare automaticamenet CHANGELOGs
 - Storia dei commit più facile da capire
-
-- Husky e commitlint non ci piacevano perché uno se ne può dimenticare
-  dato che richiedono intervento manuale
+- Strumenti lo usano per effettuare version bump automatico
+- Generare automaticamente CHANGELOGs
+- Limitazioni `Husky` e `commitlint` in progetti non js
 
 {{% /note %}}
 
@@ -197,11 +205,11 @@ Perché usare `conventional commit`?
 [`semantic-release`](https://semantic-release.gitbook.io/semantic-release/)
 automates the whole package release workflow:
 
-- Determines the next version number
+- Determines automatically the next version number
 - Generates the release notes
-- Publishes the package
+- Publishes the artifacts ([`Maven Central`](https://search.maven.org/search?q=g:dev.atedeg.mdm) and [`Docker Hub`](https://hub.docker.com/search?q=atedeg) in our case)
 
-The use of __Conventional Commits__ combined with __Semantic Release__ helped us to automate the release process
+The use of **Conventional Commits** combined with **Semantic Release** helped us to automate the release process
 
 ---
 
@@ -222,7 +230,7 @@ Each of these tools is used in CI to prevent the merging of bad code
 The following workflow is the result of a pipeline optimization that seeks to take full advantage of the parallelism between jobs:
 
 {{< mermaid >}}
-%%{init: {'theme':'base'}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontFamily': 'Inter' }}}%%
 flowchart LR
   SFMT(Scalafmt) --> B
   SFX(Scalafix) --> B
@@ -235,6 +243,14 @@ flowchart LR
 
 To simplify the `Publish` job, the [`scala-release`](https://github.com/atedeg/scala-release) action was developed
 
+{{% note %}}
+
+- Usate `GitHub Actions` per CI/CD
+- Ottimizzazione dei workflow: parallelismo
+- `scala-release` action: semplifica il processo di pubblicazione
+
+{{% /note %}}
+
 ---
 
 ## Project Management
@@ -242,6 +258,14 @@ To simplify the `Publish` job, the [`scala-release`](https://github.com/atedeg/s
 - We first defined a product backlog and biweekly sprint backlogs
 - All backlog items are tracked by linked GitHub issues
 - Closing PRs and issues automatically advances the project status
+
+{{% note %}}
+
+- Utilizzo di Github projects per gestione progetto
+- Traccia dei backlog items attraverso issue
+- Chiusura PR automaticamente chiude issue aggiornando stato progetto
+
+{{% /note %}}
 
 {{% /section %}}
 
@@ -402,6 +426,7 @@ We needed a way to automatically generate documentation pages containing the
 ubiquitous language definitions coming from the scaladoc
 
 {{% note %}}
+
 - tutti i concetti sono mappati 1:1
 - evitare inconsistenze tra codice e documentazione (copia incolla)
 - così esperto di dominio e programmatori sono allineati
@@ -446,6 +471,7 @@ _"...except as required for reasonable and customary use_
 _in describing the origin of the Work..."_
 
 {{% note %}}
+
 - in una situa reale progetto chiuso perché potrebbe segreti industriali
 - MARCHIO REGISTRATO
 {{% /note %}}
