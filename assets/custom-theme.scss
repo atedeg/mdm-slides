@@ -26,6 +26,11 @@ $heading4Size: 1.0em;
 
 @import "reveal-js/css/theme/template/theme";
 
+.label foreignObject {
+    font-size: 90%;
+    overflow: visible;
+}
+
 .no-border {
     border: none !important;
     background: none !important;
@@ -87,6 +92,6 @@ section.has-light-background {
     background-color: transparent;
 }
 
-.reveal .slide-number > a {
+.reveal .slide-number>a {
     color: #ff3c3e;
 }
