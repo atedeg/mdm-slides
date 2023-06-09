@@ -17,7 +17,7 @@ jobs:
           app_id: ${{ secrets.ATEDEG_BOT_APP_ID }}
           private_key: ${{ secrets.ATEDEG_BOT_PRIVATE_KEY }}
 
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.3
         with:
           token: ${{ steps.atedeg-bot.outputs.token }}
           submodules: true
